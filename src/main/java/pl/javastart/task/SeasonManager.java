@@ -12,19 +12,17 @@ public class SeasonManager {
     }
 
     private Season getSeasonFromUser(Scanner scanner) {
-        Season foundSeason = null;
-        do {
+        while (true) {
             System.out.println("Podaj porę roku:");
             showSeasons();
             String userInput = scanner.nextLine();
-            for (Season season : Season.values()) {
-                if (userInput.equalsIgnoreCase(season.getPlName())) {
-                    foundSeason = season;
-                    break;
-                }
+            Season season = Season.findSeasonByMonth(userInput);
+            if (season != null) {
+                return season;
+            } else {
+                System.out.println("Nie ma takiej pory roku, spróbuj ponownie");
             }
-        } while (foundSeason == null);
-        return foundSeason;
+        }
     }
 
     private void showMonthsInSeason(Season season) {

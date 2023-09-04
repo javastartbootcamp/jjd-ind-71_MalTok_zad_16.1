@@ -30,16 +30,12 @@ public enum Season {
         return plName + " - " + Arrays.toString(months);
     }
 
-    public Season findSeasonByMonth(String month) {
-        Season foundSeason = null;
+    public static Season findSeasonByMonth(String userInput) {
         for (Season season : Season.values()) {
-            for (String value : season.months) {
-                if (value.equalsIgnoreCase(month)) {
-                    foundSeason = season;
-                    break;
-                }
+            if (userInput.equalsIgnoreCase(season.getPlName())) {
+                return season;
             }
         }
-        return foundSeason;
+        return null;
     }
 }
